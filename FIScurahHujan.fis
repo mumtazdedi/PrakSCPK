@@ -1,0 +1,51 @@
+[System]
+Name='FIScurahHujan'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='suhu_udara'
+Range=[25 40]
+NumMFs=3
+MF1='sejuk':'trimf',[18.8 25 28]
+MF2='normal':'trimf',[28 30.5 33]
+MF3='panas':'trimf',[33 40 40]
+
+[Input2]
+Name='kecepatan_angin'
+Range=[0 50]
+NumMFs=3
+MF1='lambat':'gaussmf',[8 -0.608529100529098]
+MF2='sedang':'gaussmf',[8.846 22]
+MF3='kencang':'gaussmf',[8.846 50]
+
+[Input3]
+Name='lapisan_awan'
+Range=[0 20]
+NumMFs=3
+MF1='tipis':'trimf',[-8.334 0 7]
+MF2='tebal':'trimf',[7 10 14]
+MF3='sangat_tebal':'trimf',[14 20 28.34]
+
+[Output1]
+Name='curah_hujan'
+Range=[0 100]
+NumMFs=3
+MF1='ringan':'trimf',[0 15 30]
+MF2='sedang':'trimf',[30 50 70]
+MF3='lebat':'trimf',[70 85 100]
+
+[Rules]
+3 1 1, 1 (1) : 1
+2 2 2, 2 (1) : 1
+1 3 3, 3 (1) : 1
+2 1 2, 2 (1) : 1
+1 3 2, 3 (1) : 1
